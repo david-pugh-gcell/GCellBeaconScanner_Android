@@ -1,6 +1,12 @@
 # GCellBeaconScanner Android
 Example Android Studio Project using the GCellBeaconScan Library to detect nearby beacons.
 
+This project is an example Android Studio project that uses the GCellBeaconScanner Library to easily set up and detect proximity to nearby iBeacons. 
+
+For more information about iBeacons, potential applications, the Framework and other software support such as platforms please contact us at GCell ibeacon.solar.
+
+Latest version: v1_0 (08 August 2016)
+
 The *gcellbeaconscanlibrary* module provides all the tools you need to start scanning for iBeacon devices in Android with minimal code. The library allows the developer to scan for nearby iBeacon devices in two ways:
 
 1. Return a list of all nearby iBeacon devices, regardless of their UUID
