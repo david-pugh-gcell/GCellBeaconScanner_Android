@@ -105,7 +105,7 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 ````
 
 ## Add Permission Handler
-In order to ask user for relevant permission in Marshmallow, you need to implement a *onRequestPermissionResult* method. This just calls the *permissionResult* method in teh GCellBeaconScanmanager which will deal with the values. 
+In order to ask user for relevant permission in Marshmallow, you need to implement a *onRequestPermissionResult* method. This just calls the *permissionResult* method in the GCellBeaconScanmanager which will deal with the values. 
 
 ````java
 
@@ -159,6 +159,7 @@ GCellBeaconRegion otherRegion = new GCellBeaconRegion(new GCellUuid("6953fD4f-cf
 ````
 
 Then just add these regions to the manager as an ArrayList
+
 	````java
 	 	private ArrayList<GCellBeaconRegion> beaconRegions = new ArrayList<GCellBeaconRegion>();
 	 	....
