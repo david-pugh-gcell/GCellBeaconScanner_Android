@@ -185,3 +185,13 @@ The library will monitor for BLE devices in low power mode; if any iBeacon devic
 		 Log.i(TAG, "Beacons found in region: " + disc_gcell_beacons.size() + " " + region.toString());
 	 }
 	 ````
+## Fine tuning the Library
+````java
+		/////////// You can also tweak other settings
+		// Switch debug to true to get feedback from the library during development
+		mbtManager.deBug = true;
+		// Set the library to automatically switch BLE on if it is off or switched off
+		mbtManager.autoSwitchOnBlueTooth = true;
+		// Set the auto-refresh rate in seconds 
+		mbtManager.setBeaconAutoRefreshRate(20);
+````
