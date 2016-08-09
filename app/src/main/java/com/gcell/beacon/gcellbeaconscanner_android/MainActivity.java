@@ -1,7 +1,6 @@
  package com.gcell.beacon.gcellbeaconscanner_android;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -19,7 +18,6 @@ import java.util.List;
 	 private String TAG = "GCScanManager";
 	 private GCellBeaconScanManager mbtManager;
 	 private ArrayList<GCellBeaconRegion> beaconRegions = new ArrayList<GCellBeaconRegion>();
-	 private boolean deBug2 = false;
 
 
 	@Override
@@ -43,6 +41,8 @@ import java.util.List;
 		mbtManager.deBug = true;
 		// Set the library to automatically switch BLE on if it is off or switched off
 		mbtManager.autoSwitchOnBlueTooth = true;
+		// Set the auto-refresh rate
+		mbtManager.setBeaconAutoRefreshRate(10);
 
 	}
 
@@ -50,12 +50,12 @@ import java.util.List;
 
 	 // region Handle BeaconScanManager Events
 
-	 // This event means th escan manager has updated the ranged beacon list
+	 // This event means the scan manager has updated the ranged beacon list
 	 public void onGCellUpdateBeaconList(List<GCellBleDevice> disc_gcell_beacons) {
 		 Log.i(TAG, "Beacons found: " + disc_gcell_beacons.size());
 	 }
 
-	 // This event means the device has enetred a beacon region. To find out more about what beacons are in teh region, start ranging.
+	 // This event means the device has enetred a beacon region. To find out more about what beacons are in the region, start ranging.
 	 // This will return beacon UUID, Major, Minor and RSSI values
 	 public void didEnterBeaconRegion(GCellBeaconRegion region) {
 		 Toast.makeText(this, "Entered region " + region.toString(),
@@ -80,7 +80,7 @@ import java.util.List;
 
 	 // The user has denied permission for coarse location.
 	 public void locationPermissionsDenied(){
-		 if(deBug2){Log.i(TAG, "Permission for Location Denied, stopping scan");}
+		 Log.i(TAG, "Permission for Location Denied, stopping scan");
 		 mbtManager.stopScanningForBeacons();
 	 }
 
@@ -97,10 +97,7 @@ import java.util.List;
 		 Toast.makeText(this, "BLE Not Enabled",
 				 Toast.LENGTH_SHORT).show();
 		 Log.i(TAG, "BLE not enabled, enabling...");
-
-		 //Force BLE to turn on and attempt scanning again
-		 //mbtManager.enableBluetooth();
-		 //mbtManager.startScanningForBeacons();
+         
 	 }
 	// endregion
 
