@@ -188,6 +188,19 @@ The library will monitor for BLE devices in low power mode; if any iBeacon devic
 		 Log.i(TAG, "Beacons found in region: " + disc_gcell_beacons.size() + " " + region.toString());
 	 }
 ````
+
+## Scanning for all iBeacon Devices
+You can also scan and return a list of all nearby iBeacon devices regardless of their UUID, Major and Minor settings. In this case set *useBeaconRegions* to false and just start scanning 
+````java
+mbtManager.useBeaconRegions(false);
+mbtManager.startScanningForBeacons();
+````
+This method of operation can be easier to set up, but can be more power hungry and can also leave you with a large list of beacon devices that you then have to manage yourself. These will be returned via * onGCellUpdateBeaconList*.
+````java
+	 public void onGCellUpdateBeaconList(List<GCellBleDevice> disc_gcell_beacons) {
+		 Log.i(TAG, "Beacons found: " + disc_gcell_beacons.size());
+	 }
+````
 ## Fine tuning the Library
 ````java
 		/////////// You can also tweak other settings
