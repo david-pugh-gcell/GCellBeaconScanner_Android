@@ -7,6 +7,9 @@ For more information about iBeacons, potential applications, the Framework and o
 
 Latest version: v1_0 (08 August 2016)
 
+## Java Documentation
+For Java documentation please see the repository [docs](https://htmlpreview.github.io/?https://raw.githubusercontent.com/david-pugh-gcell/GCellBeaconScanner_Android/master/GCellBeaconDocs/index.html).
+
 The *gcellbeaconscanlibrary* module provides all the tools you need to start scanning for iBeacon devices in Android with minimal code. The library allows the developer to scan for nearby iBeacon devices in two ways:
 
 1. Return a list of all nearby iBeacon devices, regardless of their UUID
