@@ -106,7 +106,8 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 
 ## Add Permission Handler
 In order to ask user for relevant permission in Marshmallow, you need to implement a *onRequestPermissionResult* method. This just calls the *permissionResult* method in teh GCellBeaconScanmanager which will deal with the values. 
-```` java
+
+````java
 
 	 // region Handling permission request
 	 /**
@@ -133,60 +134,61 @@ private GCellBeaconScanManager mbtManager;
 
 Then create an instance within the onCreate method of your Activity:
 
-```` java
+````java
 		// set up scan manager
 		mbtManager = new GCellBeaconScanManager(this);
 ````
 
 
-THere are two ways to use the library:
+There are two ways to use the library:
 
 ## Scanning for Regions
 This method will be familar to anyone who has used iBeacon within iOS. Beacon regions are defined and information about whether you are within these regions and what beacons that correspond to that region are returned. 
 To use this method, set the *useBeaconRegions* to true.
 
-````java
-	//use known regions
+	````java
+		//use known regions
 		mbtManager.useBeaconRegions(true);
-````
+	````
 ### Defining a Beacon region
 Beacon regions can be defined by their proximity UUID only, Proximity UUID and Major number or by the proximity UUID, Major and Minor Numbers. This gives developers flexibility in how they define iBeacon projects and infastructure. The GCellBeaconRegion class has a number of constructures corresponding to these different definitions, but you can also automatically define a region based on the default GCell UUID.
-```` java
+
+````java
 GCellBeaconRegion gCellRegion = new GCellBeaconRegion(); //Sending no parameters initiates a region using the Default GCell UUID
 GCellBeaconRegion otherRegion = new GCellBeaconRegion(new GCellUuid("6953fD4f-cfAF-ff58-a9cf-574A5E383c24"), "com.other");
 ````
 
 Then just add these regions to the manager as an ArrayList
-````java
-	 private ArrayList<GCellBeaconRegion> beaconRegions = new ArrayList<GCellBeaconRegion>();
-	 ....
-	 		beaconRegions.add(gCellRegion);
+	````java
+	 	private ArrayList<GCellBeaconRegion> beaconRegions = new ArrayList<GCellBeaconRegion>();
+	 	....
+	 	beaconRegions.add(gCellRegion);
 		mbtManager.setBeaconRegions(beaconRegions);
-		````
-		Then just start monitoring for these regions.
+	````
+Then just start monitoring for these regions.
 		
-		````java
+	````java
 		mbtManager.startMonitoringForBeacons();
-    ````
+	````
 The library will monitor for BLE devices in low power mode; if any iBeacon devices are in range that correspond to the Beacon Regions defined, the library will call the *didEnterRegion* method. To start to get more details of the beacons in that region, then call teh *startMonitoringForBeaconinRegion* method.
 
-````java
-	 // This event means the device has enetred a beacon region. To find out more about what beacons are in the region, start ranging.
-	 // This will return beacon UUID, Major, Minor and RSSI values
-	 public void didEnterBeaconRegion(GCellBeaconRegion region) {
+	````java
+		 // This event means the device has enetred a beacon region. To find out more about what beacons are in the region, start ranging.
+	 	// This will return beacon UUID, Major, Minor and RSSI values
+		 public void didEnterBeaconRegion(GCellBeaconRegion region) {
 		 mbtManager.startRangingforRegion(region);
 	 }
-	 ````
+	````
 	 
 	 Details of the iBeacon devices in range will then be returned via the 
 	 ````java
 	 	 // Beacons within a region have been ranged - we now have a list of beacons and their values
-	 public void didRangeBeaconsinRegion(GCellBeaconRegion region, List<GCellBleDevice> disc_gcell_beacons) {
+	 	public void didRangeBeaconsinRegion(GCellBeaconRegion region, List<GCellBleDevice> disc_gcell_beacons) {
 		 Log.i(TAG, "Beacons found in region: " + disc_gcell_beacons.size() + " " + region.toString());
 	 }
 	 ````
 ## Fine tuning the Library
-````java
+	````java
 		/////////// You can also tweak other settings
 		// Switch debug to true to get feedback from the library during development
 		mbtManager.deBug = true;
@@ -194,4 +196,4 @@ The library will monitor for BLE devices in low power mode; if any iBeacon devic
 		mbtManager.autoSwitchOnBlueTooth = true;
 		// Set the auto-refresh rate in seconds 
 		mbtManager.setBeaconAutoRefreshRate(20);
-````
+	````
