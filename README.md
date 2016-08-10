@@ -115,7 +115,7 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 ````
 
 ## Add Permission Handler
-In order to ask user for relevant permission in Marshmallow, you need to implement a *onRequestPermissionResult* method. This just calls the *permissionResult* method in the GCellBeaconScanmanager which will deal with the values. 
+The GCellBeaconScanManager library automatically checks and, if required, requests the appropriate location permissions in Marshmallow. In order to handle this request properly you need to implement a *onRequestPermissionResult* method in your Activity. This just calls the *permissionResult* method in the GCellBeaconScanManager Library which will deal with the values. The GCellBeaconScanManager Library requests permissions with a requestCode value of 1. If you need to request additional permissions in your project, either use a requestCode value greater than 1 or change the code the library uses by changing the value of  *coarseLocationRequestcode*.
 
 ````java
 
@@ -181,7 +181,7 @@ Then just start monitoring for these regions.
 	mbtManager.startMonitoringForBeacons();
 ````
 
-The library will monitor for BLE devices in low power mode; if any iBeacon devices are in range that correspond to the Beacon Regions defined, the library will call the *didEnterRegion* method. To start to get more details of the beacons in that region, then call teh *startMonitoringForBeaconinRegion* method.
+The library will monitor for BLE devices in low power mode; if any iBeacon devices are in range that correspond to the Beacon Regions defined, the library will call the *didEnterRegion* method. To start to get more details of the beacons in that region, then call the *startMonitoringForBeaconinRegion* method.
 
 ````java
 	// This event means the device has enetred a beacon region. To find out more about what beacons are in the region, start ranging.
@@ -220,4 +220,6 @@ This method of operation can be easier to set up, but can be more power hungry a
 		mbtManager.autoSwitchOnBlueTooth = true;
 		// Set the auto-refresh rate in seconds 
 		mbtManager.setBeaconAutoRefreshRate(20);
+		// Change the permission requestCode value used by the library
+		mbtManager.coarseLocationRequestcode = 3;
 ````
