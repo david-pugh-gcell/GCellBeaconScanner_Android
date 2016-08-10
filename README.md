@@ -160,6 +160,12 @@ To use this method, set the *useBeaconRegions* to true.
 		mbtManager.useBeaconRegions(true);
 ````
 ### Defining a Beacon region
+Regions represent the area a user can be in if they can see one or more beacons within range. You can use this capability to generate alerts or to provide other relevant information when the user enters or exits a beacon region. Rather than being identified by fixed geographical coordinates, a beacon region is identified by the device’s proximity to Bluetooth low-energy beacons that advertise a combination of the following values:
+
+<li>A proximity UUID (universally unique identifier), which is a 128-bit value that uniquely identifies one or more beacons as a certain type or from a certain organization or project
+<li>A major value, which is a 16-bit unsigned integer that can be used to group related beacons that have the same proximity UUID
+<li>A minor value, which is a 16-bit unsigned integer that differentiates beacons with the same proximity UUID and major value.
+
 Beacon regions can be defined by their proximity UUID only, Proximity UUID and Major number or by the proximity UUID, Major and Minor Numbers. This gives developers flexibility in how they define iBeacon projects and infastructure. The GCellBeaconRegion class has a number of constructures corresponding to these different definitions, but you can also automatically define a region based on the default GCell UUID.
 
 ````java
