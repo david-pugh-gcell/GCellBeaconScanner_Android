@@ -20,10 +20,12 @@ Beacons are flushed from the list if they haven’t been seen for x seconds, as 
 ### Java Documentation & Overview
 For Java documentation please see the repository [docs](https://htmlpreview.github.io/?https://raw.githubusercontent.com/david-pugh-gcell/GCellBeaconScanner_Android/master/GCellBeaconDocs/index.html).
 
+###Compatibility
+The library is designed and tested to work with Android 4.3 (API Level 18) onwards. This API introduces built-in platform support for Bluetooth Low Energy to scan and discover devices. 
+
 # Using the Library
-##Compatibility
-The library is designed and tested to work with API ??
-##Adding the library to your Project
+
+##Adding the Library to your Project
 1. Download and Copy the **gcellbeaconscanlibrary-release-vX.aar** file into the libs folder in your Android Studio Project.
 2. Within your app build.gradle file add the following entry to allow the app to see the library locally
 
@@ -54,7 +56,6 @@ In order to detect beacons your app will need to have manifest permission to acc
 The library will automatically check for user permissions and the status of Bluetooth Low Energy (BLE) on the device and is compatible with Marshmallow. 
 
 ## Import the class definitions
-
 
 ````java
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconRegion;
