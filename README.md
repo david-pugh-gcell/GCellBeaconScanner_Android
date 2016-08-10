@@ -7,18 +7,18 @@ For more information about iBeacons, potential applications, the Framework and o
 
 Latest version: v1_0 (08 August 2016)
 
-## Java Documentation
-For Java documentation please see the repository [docs](https://htmlpreview.github.io/?https://raw.githubusercontent.com/david-pugh-gcell/GCellBeaconScanner_Android/master/GCellBeaconDocs/index.html).
-
 The *gcellbeaconscanlibrary* module provides all the tools you need to start scanning for iBeacon devices in Android with minimal code. The library allows the developer to scan for nearby iBeacon devices in two ways:
 
 1. Return a list of all nearby iBeacon devices, regardless of their UUID
 2. Return only information on iBeacon devices from pre-determined Beacon Regions. You can monitor and range these regions, in a method very similar to that used in iOS. 
-
-
+ 
 There are 4 classes, the one that you will interact most with is the GCellBeaconScanManager
-This class handles the Bluetooth scans and returns any scanned devices in range that have an appropriate advertising packet. E.g., once initialized and running it returns callbacks based on what beacons are ranged. This are returned every 1 second in the form of an array list.
-Beacons are flushed from the list if they haven’t been seen for x seconds, as defined by setBeaconAutoRefreshRate, this defaults to 10s to match iOS. During this interval the RSSI of any beacon that may have just gone out of range is set to 0 and proximity unknown. 
+This class handles the Bluetooth scans and returns any scanned devices in range that have an appropriate advertising packet. E.g., once initialized and running it returns callbacks based on what beacons are ranged. This are returned every 1 second in the form of an array list. 
+
+Beacons are flushed from the list if they haven’t been seen for x seconds, as defined by setBeaconAutoRefreshRate, this defaults to 10s to match iOS. During this interval the RSSI of any beacon that may have just gone out of range is set to 0 and proximity unknown.
+
+### Java Documentation & Overview
+For Java documentation please see the repository [docs](https://htmlpreview.github.io/?https://raw.githubusercontent.com/david-pugh-gcell/GCellBeaconScanner_Android/master/GCellBeaconDocs/index.html).
 
 # Using the Library
 ##Compatibility
