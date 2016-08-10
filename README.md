@@ -114,8 +114,8 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 	// endregion
 ````
 
-## Add Permission Handler for Marshmallow
-In order to detect and use beacons, your app needs to have location permissions granted. This is classed as a 'Dangerous' permission by Android and as such the user has to explicitly give approval to your app. The GCellBeaconScanManager library automatically checks and, if required, requests the appropriate location permissions in Marshmallow. In order to handle this request properly you need to implement a *onRequestPermissionResult* method in your Activity. This just calls the *permissionResult* method in the GCellBeaconScanManager Library which will deal with the values. The GCellBeaconScanManager Library requests permissions with a requestCode value of 1. If you need to request additional permissions in your project, either use a requestCode value greater than 1 or change the code the library uses by changing the value of  *coarseLocationRequestcode*.
+## Add Permission Handler for Android 6.0
+In order to detect and use beacons, your app needs to have location permissions granted. As of Android 6.0 (API level 23) this is classed as a 'Dangerous' permission and as such the user has to explicitly give approval to your app. The GCellBeaconScanManager library automatically checks and, if required, requests the appropriate location permissions in Marshmallow. In order to handle this request properly you need to implement a *onRequestPermissionResult* method in your Activity. This just calls the *permissionResult* method in the GCellBeaconScanManager Library which will deal with the values. The GCellBeaconScanManager Library requests permissions with a requestCode value of 1. If you need to request additional permissions in your project, either use a requestCode value greater than 1 or change the code the library uses by changing the value of  *coarseLocationRequestcode*.
 
 ````java
 
