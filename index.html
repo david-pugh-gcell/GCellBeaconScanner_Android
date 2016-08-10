@@ -22,35 +22,41 @@
       <h1>
 <a id="gcellbeaconscanner-android" class="anchor" href="#gcellbeaconscanner-android" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GCellBeaconScanner Android</h1>
 
-<p>Example Android Studio Project using the GCellBeaconScan Library to detect nearby beacons.</p>
+<p>Example Android Studio Project using the GCellBeaconScan aar Library to detect nearby iBeacon devices.</p>
 
-<p>This project is an example Android Studio project that uses the GCellBeaconScanner Library to easily set up and detect proximity to nearby iBeacons. </p>
+<p>This project is an example Android Studio project that uses the GCellBeaconScanner aarLibrary to easily set up and detect proximity to nearby iBeacon devices. </p>
 
-<p>For more information about iBeacons, potential applications, the Framework and other software support such as platforms please contact us at GCell ibeacon.solar.</p>
+<p>For more information about iBeacons, potential applications, the Framework and other software support such as platforms please contact us at <a href="http://www.ibeacon.solar">GCell ibeacon.solar</a>.</p>
 
 <p>Latest version: v1_0 (08 August 2016)</p>
 
 <p>The <em>gcellbeaconscanlibrary</em> module provides all the tools you need to start scanning for iBeacon devices in Android with minimal code. The library allows the developer to scan for nearby iBeacon devices in two ways:</p>
 
 <ol>
-<li>Return a list of all nearby iBeacon devices, regardless of their UUID</li>
+<li>Return a list of all nearby iBeacon devices, regardless of their UUID.</li>
 <li>Return only information on iBeacon devices from pre-determined Beacon Regions. You can monitor and range these regions, in a method very similar to that used in iOS. </li>
 </ol>
 
 <p>There are 4 classes, the one that you will interact most with is the GCellBeaconScanManager
-This class handles the Bluetooth scans and returns any scanned devices in range that have an appropriate advertising packet. E.g., once initialized and running it returns callbacks based on what beacons are ranged. This are returned every 1 second in the form of an array list.
-Beacons are flushed from the list if they haven’t been seen for x seconds, as defined by setBeaconAutoRefreshRate, this defaults to 10s to match iOS. During this interval the RSSI of any beacon that may have just gone out of range is set to 0 and proximity unknown. </p>
+This class handles the Bluetooth scans and returns any scanned devices in range that have an appropriate advertising packet. E.g., once initialized and running it returns callbacks based on what beacons are ranged. This are returned every 1 second in the form of an array list. </p>
+
+<p>Beacons are flushed from the list if they haven’t been seen for x seconds, as defined by setBeaconAutoRefreshRate, this defaults to 10s to match iOS. During this interval the RSSI of any beacon that may have just gone out of range is set to 0 and proximity unknown.</p>
+
+<h3>
+<a id="java-documentation--overview" class="anchor" href="#java-documentation--overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Java Documentation &amp; Overview</h3>
+
+<p>For Java documentation please see the repository <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/david-pugh-gcell/GCellBeaconScanner_Android/master/GCellBeaconDocs/index.html">docs</a>.</p>
+
+<h3>
+<a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compatibility</h3>
+
+<p>The library is designed and tested to work with Android 4.3 (API Level 18) onwards. This API introduces built-in platform support for Bluetooth Low Energy to scan and discover devices. </p>
 
 <h1>
 <a id="using-the-library" class="anchor" href="#using-the-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using the Library</h1>
 
 <h2>
-<a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compatibility</h2>
-
-<p>The library is designed and tested to work with API ??</p>
-
-<h2>
-<a id="adding-the-library-to-your-project" class="anchor" href="#adding-the-library-to-your-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding the library to your Project</h2>
+<a id="adding-the-library-to-your-project" class="anchor" href="#adding-the-library-to-your-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding the Library to your Project</h2>
 
 <ol>
 <li>Download and Copy the <strong>gcellbeaconscanlibrary-release-vX.aar</strong> file into the libs folder in your Android Studio Project.</li>
