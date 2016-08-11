@@ -5,7 +5,7 @@ This project is an example Android Studio project that uses the GCellBeaconScann
 
 For more information about iBeacons, potential applications, the Framework and other software support such as platforms please contact us at [GCell ibeacon.solar](http://www.ibeacon.solar).
 
-Latest version: v1_0 (08 August 2016)
+Latest version: v1_01 (11 August 2016)
 
 The *gcellbeaconscanlibrary* module provides all the tools you need to start scanning for iBeacon devices in Android with minimal code. The library allows the developer to scan for nearby iBeacon devices in two ways:
 
@@ -41,7 +41,7 @@ The library is designed and tested to work with Android 4.3 (API Level 18) onwar
 
 ````xml
 dependencies {
-    compile(name:'gcellbeaconscanlibrary-release-v1-0', ext: 'aar')
+    compile(name:'gcellbeaconscanlibrary-release-v1-01', ext: 'aar')
 }
 ````
 
@@ -60,13 +60,13 @@ The library will automatically check for user permissions and the status of Blue
 ````java
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconRegion;
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconScanManager;
-import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBleDevice;
+import com.gcell.ibeacon.gcellbeaconscanlibrary.GCelliBeacon;
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 ````
 
 ## Implement GCellBeaconManagerScanEvents interface and Implement methods
 ````java
- public class MainActivity extends Activity implements GCellBeaconScanManager.GCellBeaconManagerScanEvents{
+ public class MainActivity extends Activity implements GCellBeaconManagerScanEvents{
 ````
 
 ````java
