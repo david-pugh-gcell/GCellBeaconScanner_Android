@@ -1,7 +1,7 @@
 # GCellBeaconScanner Android
 Example Android Studio Project using the GCellBeaconScan aar Library to detect nearby iBeacon devices.
 
-This project is an example Android Studio project that uses the GCellBeaconScanner aarLibrary to easily set up and detect proximity to nearby iBeacon devices. 
+This project is an example Android Studio project that uses the GCellBeaconScanner aar Library to easily set up and detect proximity to nearby iBeacon devices. 
 
 For more information about iBeacons, potential applications, the Framework and other software support such as platforms please contact us at [GCell ibeacon.solar](http://www.ibeacon.solar).
 
@@ -58,6 +58,7 @@ The library will automatically check for user permissions and the status of Blue
 ## Import the class definitions
 
 ````java
+import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconManagerScanEvents;
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconRegion;
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconScanManager;
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCelliBeacon;
@@ -73,7 +74,7 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 	 // region Handle BeaconScanManager Events
 
 	 // This event means the scan manager has updated the ranged beacon list
-	 public void onGCellUpdateBeaconList(List<GCellBleDevice> disc_gcell_beacons) {
+	 public void onGCellUpdateBeaconList(List<GCelliBeacon> disc_gcell_beacons) {
 		 Log.i(TAG, "Beacons found: " + disc_gcell_beacons.size());
 	 }
 
@@ -91,7 +92,7 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 	 }
 
 	 // Beacons within a region have been ranged - we now have a list of beacons and their values
-	 public void didRangeBeaconsinRegion(GCellBeaconRegion region, List<GCellBleDevice> disc_gcell_beacons) {
+	 public void didRangeBeaconsinRegion(GCellBeaconRegion region, List<GCelliBeacon> disc_gcell_beacons) {
 		 Log.i(TAG, "Beacons found in region: " + disc_gcell_beacons.size() + " " + region.toString());
 
 	 }
@@ -118,21 +119,17 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 In order to detect and use beacons, your app needs to have location permissions granted. As of Android 6.0 (API level 23) this is classed as a 'Dangerous' permission and as such the user has to explicitly give approval to your app. The GCellBeaconScanManager library automatically checks and, if required, requests the appropriate location permissions in Marshmallow. In order to handle this request properly you need to implement a *onRequestPermissionResult* method in your Activity. This just calls the *permissionResult* method in the GCellBeaconScanManager Library which will deal with the values. The GCellBeaconScanManager Library requests permissions with a requestCode value of 1. If you need to request additional permissions in your project, either use a requestCode value greater than 1 or change the code the library uses by changing the value of  *coarseLocationRequestcode*.
 
 ````java
+@Override
+public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+         //Check to see if this is feedback from the request that the Scan manager made by checking the requestCode
+         if(requestCode == mbtManager.getPermissionRequestCode()) {
+             mbtManager.handlePermissionResult(requestCode, permissions, grantResults);
+         }else{
+             //This wasnt a response to the Scan Manager permission another request, handle accordingly
+             Log.i(TAG,"This was another request");
+         }
 
-	 // region Handling permission request
-	 /**
-	  * This allows us to deal with Location permissions from the user - it allows the library to handle any feedback calls
-	  * IT overrides the Activity onrequestPermissionsResult
-	  * @param requestCode
-	  * @param permissions
-	  * @param grantResults
-	  */
-	 @Override
-	 public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-		 mbtManager.permissionResult(requestCode, permissions, grantResults);
-	 }
-
- 	// end region
+}
 ````
 
 #Using the library
@@ -200,7 +197,7 @@ The library will monitor for BLE devices in low power mode; if any iBeacon devic
  Details of the iBeacon devices in range will then be returned via the 
 ````java
 	 	 // Beacons within a region have been ranged - we now have a list of beacons and their values
-	 public void didRangeBeaconsinRegion(GCellBeaconRegion region, List<GCellBleDevice> disc_gcell_beacons) {
+	 public void didRangeBeaconsinRegion(GCellBeaconRegion region, List<GCelliBeacon> disc_gcell_beacons) {
 		 Log.i(TAG, "Beacons found in region: " + disc_gcell_beacons.size() + " " + region.toString());
 	 }
 ````
@@ -218,14 +215,18 @@ This method of operation can be easier to set up, but can be more power hungry a
 	 }
 ````
 ## Fine tuning the Library
+You can configure some of the default settings of the library as outlined below and in the documentation. 
 ````java
-		/////////// You can also tweak other settings
-		// Switch debug to true to get feedback from the library during development
-		mbtManager.deBug = true;
-		// Set the library to automatically switch BLE on if it is off or switched off
-		mbtManager.autoSwitchOnBlueTooth = true;
-		// Set the auto-refresh rate in seconds 
-		mbtManager.setBeaconAutoRefreshRate(20);
-		// Change the permission requestCode value used by the library
-		mbtManager.coarseLocationRequestcode = 3;
+
+        // Switch debug to true to get feedback from the library during development via Log.i
+        mbtManager.enableDeuggingFeedback(true);
+        // Set the library to automatically switch BLE on if it is off or switched off, default is true
+        mbtManager.enableBlueToothAutoSwitchOn(true);
+        // Set the auto-refresh rate to 10 s - this is the time we will go without seeing a beacon before deleting it from the ranged list. Default is 8s
+        mbtManager.setBeaconAutoRefreshRate(10);
+
+        //Set the message to display when showing information dialog before requesting permissions to access users location
+        mbtManager.setPermissionExplanationMessage("Example Feedback Message. We need permission sto see your location before we can see beacons!");
+        // Set the requestCode used to Request Grant Permissions - default is 1
+        mbtManager.setPermissionRequestCode(24);
 ````
