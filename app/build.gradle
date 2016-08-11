@@ -15,7 +15,7 @@ android {
         minSdkVersion 18
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "1"
     }
     buildTypes {
         release {
@@ -29,5 +29,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.0.0'
-    compile(name:'gcellbeaconscanlibrary-release-v1-0', ext: 'aar')
+    compile(name:'gcellbeaconscanlibrary-release-v1-01', ext: 'aar')
 }
