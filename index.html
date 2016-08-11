@@ -24,11 +24,11 @@
 
 <p>Example Android Studio Project using the GCellBeaconScan aar Library to detect nearby iBeacon devices.</p>
 
-<p>This project is an example Android Studio project that uses the GCellBeaconScanner aarLibrary to easily set up and detect proximity to nearby iBeacon devices. </p>
+<p>This project is an example Android Studio project that uses the GCellBeaconScanner aar Library to easily set up and detect proximity to nearby iBeacon devices. </p>
 
 <p>For more information about iBeacons, potential applications, the Framework and other software support such as platforms please contact us at <a href="http://www.ibeacon.solar">GCell ibeacon.solar</a>.</p>
 
-<p>Latest version: v1_0 (08 August 2016)</p>
+<p>Latest version: v1_01 (11 August 2016)</p>
 
 <p>The <em>gcellbeaconscanlibrary</em> module provides all the tools you need to start scanning for iBeacon devices in Android with minimal code. The library allows the developer to scan for nearby iBeacon devices in two ways:</p>
 
@@ -74,7 +74,7 @@ This class handles the Bluetooth scans and returns any scanned devices in range 
 </ol>
 
 <div class="highlight highlight-text-xml"><pre>dependencies {
-    compile(name:'gcellbeaconscanlibrary-release-v1-0', ext: 'aar')
+    compile(name:'gcellbeaconscanlibrary-release-v1-01', ext: 'aar')
 }</pre></div>
 
 <h2>
@@ -91,20 +91,21 @@ This class handles the Bluetooth scans and returns any scanned devices in range 
 <h2>
 <a id="import-the-class-definitions" class="anchor" href="#import-the-class-definitions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Import the class definitions</h2>
 
-<div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconRegion</span>;
+<div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconManagerScanEvents</span>;
+<span class="pl-k">import</span> <span class="pl-smi">com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconRegion</span>;
 <span class="pl-k">import</span> <span class="pl-smi">com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconScanManager</span>;
-<span class="pl-k">import</span> <span class="pl-smi">com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBleDevice</span>;
+<span class="pl-k">import</span> <span class="pl-smi">com.gcell.ibeacon.gcellbeaconscanlibrary.GCelliBeacon</span>;
 <span class="pl-k">import</span> <span class="pl-smi">com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid</span>;</pre></div>
 
 <h2>
 <a id="implement-gcellbeaconmanagerscanevents-interface-and-implement-methods" class="anchor" href="#implement-gcellbeaconmanagerscanevents-interface-and-implement-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implement GCellBeaconManagerScanEvents interface and Implement methods</h2>
 
-<div class="highlight highlight-source-java"><pre> <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MainActivity</span> <span class="pl-k">extends</span> <span class="pl-e">Activity</span> <span class="pl-k">implements</span> <span class="pl-e">GCellBeaconScanManager</span>.<span class="pl-e">GCellBeaconManagerScanEvents</span>{</pre></div>
+<div class="highlight highlight-source-java"><pre> <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MainActivity</span> <span class="pl-k">extends</span> <span class="pl-e">Activity</span> <span class="pl-k">implements</span> <span class="pl-e">GCellBeaconManagerScanEvents</span>{</pre></div>
 
 <div class="highlight highlight-source-java"><pre>     <span class="pl-c">// region Handle BeaconScanManager Events</span>
 
      <span class="pl-c">// This event means the scan manager has updated the ranged beacon list</span>
-     <span class="pl-k">public</span> <span class="pl-k">void</span> onGCellUpdateBeaconList(<span class="pl-k">List&lt;<span class="pl-smi">GCellBleDevice</span>&gt;</span> disc_gcell_beacons) {
+     <span class="pl-k">public</span> <span class="pl-k">void</span> onGCellUpdateBeaconList(<span class="pl-k">List&lt;<span class="pl-smi">GCelliBeacon</span>&gt;</span> disc_gcell_beacons) {
          <span class="pl-smi">Log</span><span class="pl-k">.</span>i(<span class="pl-c1">TAG</span>, <span class="pl-s"><span class="pl-pds">"</span>Beacons found: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> disc_gcell_beacons<span class="pl-k">.</span>size());
      }
 
@@ -122,7 +123,7 @@ This class handles the Bluetooth scans and returns any scanned devices in range 
      }
 
      <span class="pl-c">// Beacons within a region have been ranged - we now have a list of beacons and their values</span>
-     <span class="pl-k">public</span> <span class="pl-k">void</span> didRangeBeaconsinRegion(<span class="pl-smi">GCellBeaconRegion</span> region, <span class="pl-k">List&lt;<span class="pl-smi">GCellBleDevice</span>&gt;</span> disc_gcell_beacons) {
+     <span class="pl-k">public</span> <span class="pl-k">void</span> didRangeBeaconsinRegion(<span class="pl-smi">GCellBeaconRegion</span> region, <span class="pl-k">List&lt;<span class="pl-smi">GCelliBeacon</span>&gt;</span> disc_gcell_beacons) {
          <span class="pl-smi">Log</span><span class="pl-k">.</span>i(<span class="pl-c1">TAG</span>, <span class="pl-s"><span class="pl-pds">"</span>Beacons found in region: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> disc_gcell_beacons<span class="pl-k">.</span>size() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> <span class="pl-k">+</span> region<span class="pl-k">.</span>toString());
 
      }
@@ -145,25 +146,21 @@ This class handles the Bluetooth scans and returns any scanned devices in range 
     <span class="pl-c">// endregion</span></pre></div>
 
 <h2>
-<a id="add-permission-handler" class="anchor" href="#add-permission-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add Permission Handler</h2>
+<a id="add-permission-handler-for-android-60" class="anchor" href="#add-permission-handler-for-android-60" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add Permission Handler for Android 6.0</h2>
 
-<p>In order to ask user for relevant permission in Marshmallow, you need to implement a <em>onRequestPermissionResult</em> method. This just calls the <em>permissionResult</em> method in the GCellBeaconScanmanager which will deal with the values. </p>
+<p>In order to detect and use beacons, your app needs to have location permissions granted. As of Android 6.0 (API level 23) this is classed as a 'Dangerous' permission and as such the user has to explicitly give approval to your app. The GCellBeaconScanManager library automatically checks and, if required, requests the appropriate location permissions in Marshmallow. In order to handle this request properly you need to implement a <em>onRequestPermissionResult</em> method in your Activity. This just calls the <em>permissionResult</em> method in the GCellBeaconScanManager Library which will deal with the values. The GCellBeaconScanManager Library requests permissions with a requestCode value of 1. If you need to request additional permissions in your project, either use a requestCode value greater than 1 or change the code the library uses by changing the value of  <em>coarseLocationRequestcode</em>.</p>
 
-<div class="highlight highlight-source-java"><pre>
-     <span class="pl-c">// region Handling permission request</span>
-     <span class="pl-c">/**</span>
-<span class="pl-c">      * This allows us to deal with Location permissions from the user - it allows the library to handle any feedback calls</span>
-<span class="pl-c">      * IT overrides the Activity onrequestPermissionsResult</span>
-<span class="pl-c">      * @param requestCode</span>
-<span class="pl-c">      * @param permissions</span>
-<span class="pl-c">      * @param grantResults</span>
-<span class="pl-c">      */</span>
-     @<span class="pl-smi">Override</span>
-     <span class="pl-k">public</span> <span class="pl-k">void</span> onRequestPermissionsResult(<span class="pl-k">int</span> requestCode, <span class="pl-smi">String</span> permissions[], <span class="pl-k">int</span>[] grantResults) {
-         mbtManager<span class="pl-k">.</span>permissionResult(requestCode, permissions, grantResults);
-     }
+<div class="highlight highlight-source-java"><pre>@<span class="pl-smi">Override</span>
+<span class="pl-k">public</span> <span class="pl-k">void</span> onRequestPermissionsResult(<span class="pl-k">int</span> requestCode, <span class="pl-smi">String</span> permissions[], <span class="pl-k">int</span>[] grantResults) {
+         <span class="pl-c">//Check to see if this is feedback from the request that the Scan manager made by checking the requestCode</span>
+         <span class="pl-k">if</span>(requestCode <span class="pl-k">==</span> mbtManager<span class="pl-k">.</span>getPermissionRequestCode()) {
+             mbtManager<span class="pl-k">.</span>handlePermissionResult(requestCode, permissions, grantResults);
+         }<span class="pl-k">else</span>{
+             <span class="pl-c">//This wasnt a response to the Scan Manager permission another request, handle accordingly</span>
+             <span class="pl-smi">Log</span><span class="pl-k">.</span>i(<span class="pl-c1">TAG</span>,<span class="pl-s"><span class="pl-pds">"</span>This was another request<span class="pl-pds">"</span></span>);
+         }
 
-    <span class="pl-c">// end region</span></pre></div>
+}</pre></div>
 
 <h1>
 <a id="using-the-library-1" class="anchor" href="#using-the-library-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using the library</h1>
@@ -192,6 +189,12 @@ To use this method, set the <em>useBeaconRegions</em> to true.</p>
 <h3>
 <a id="defining-a-beacon-region" class="anchor" href="#defining-a-beacon-region" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Defining a Beacon region</h3>
 
+<p>Regions represent the area a user can be in if they can see one or more beacons within range. You can use this capability to generate alerts or to provide other relevant information when the user enters or exits a beacon region. Rather than being identified by fixed geographical coordinates, a beacon region is identified by the device’s proximity to Bluetooth low-energy beacons that advertise a combination of the following values:</p>
+
+<p></p>A proximity UUID (universally unique identifier), which is a 128-bit value that uniquely identifies one or more beacons as a certain type or from a certain organization or project
+A major value, which is a 16-bit unsigned integer that can be used to group related beacons that have the same proximity UUID
+A minor value, which is a 16-bit unsigned integer that differentiates beacons with the same proximity UUID and major value.
+
 <p>Beacon regions can be defined by their proximity UUID only, Proximity UUID and Major number or by the proximity UUID, Major and Minor Numbers. This gives developers flexibility in how they define iBeacon projects and infastructure. The GCellBeaconRegion class has a number of constructures corresponding to these different definitions, but you can also automatically define a region based on the default GCell UUID.</p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-smi">GCellBeaconRegion</span> gCellRegion <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">GCellBeaconRegion</span>(); <span class="pl-c">//Sending no parameters initiates a region using the Default GCell UUID</span>
@@ -208,7 +211,7 @@ To use this method, set the <em>useBeaconRegions</em> to true.</p>
 
 <div class="highlight highlight-source-java"><pre>    mbtManager<span class="pl-k">.</span>startMonitoringForBeacons();</pre></div>
 
-<p>The library will monitor for BLE devices in low power mode; if any iBeacon devices are in range that correspond to the Beacon Regions defined, the library will call the <em>didEnterRegion</em> method. To start to get more details of the beacons in that region, then call teh <em>startMonitoringForBeaconinRegion</em> method.</p>
+<p>The library will monitor for BLE devices in low power mode; if any iBeacon devices are in range that correspond to the Beacon Regions defined, the library will call the <em>didEnterRegion</em> method. To start to get more details of the beacons in that region, then call the <em>startMonitoringForBeaconinRegion</em> method.</p>
 
 <div class="highlight highlight-source-java"><pre>    <span class="pl-c">// This event means the device has enetred a beacon region. To find out more about what beacons are in the region, start ranging.</span>
      <span class="pl-c">// This will return beacon UUID, Major, Minor and RSSI values</span>
@@ -219,7 +222,7 @@ To use this method, set the <em>useBeaconRegions</em> to true.</p>
 <p>Details of the iBeacon devices in range will then be returned via the </p>
 
 <div class="highlight highlight-source-java"><pre>         <span class="pl-c">// Beacons within a region have been ranged - we now have a list of beacons and their values</span>
-     <span class="pl-k">public</span> <span class="pl-k">void</span> didRangeBeaconsinRegion(<span class="pl-smi">GCellBeaconRegion</span> region, <span class="pl-k">List&lt;<span class="pl-smi">GCellBleDevice</span>&gt;</span> disc_gcell_beacons) {
+     <span class="pl-k">public</span> <span class="pl-k">void</span> didRangeBeaconsinRegion(<span class="pl-smi">GCellBeaconRegion</span> region, <span class="pl-k">List&lt;<span class="pl-smi">GCelliBeacon</span>&gt;</span> disc_gcell_beacons) {
          <span class="pl-smi">Log</span><span class="pl-k">.</span>i(<span class="pl-c1">TAG</span>, <span class="pl-s"><span class="pl-pds">"</span>Beacons found in region: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> disc_gcell_beacons<span class="pl-k">.</span>size() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> <span class="pl-k">+</span> region<span class="pl-k">.</span>toString());
      }</pre></div>
 
@@ -240,13 +243,20 @@ mbtManager<span class="pl-k">.</span>startScanningForBeacons();</pre></div>
 <h2>
 <a id="fine-tuning-the-library" class="anchor" href="#fine-tuning-the-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fine tuning the Library</h2>
 
-<div class="highlight highlight-source-java"><pre>        <span class="pl-c">/////////// You can also tweak other settings</span>
-        <span class="pl-c">// Switch debug to true to get feedback from the library during development</span>
-        mbtManager<span class="pl-k">.</span>deBug <span class="pl-k">=</span> <span class="pl-c1">true</span>;
-        <span class="pl-c">// Set the library to automatically switch BLE on if it is off or switched off</span>
-        mbtManager<span class="pl-k">.</span>autoSwitchOnBlueTooth <span class="pl-k">=</span> <span class="pl-c1">true</span>;
-        <span class="pl-c">// Set the auto-refresh rate in seconds </span>
-        mbtManager<span class="pl-k">.</span>setBeaconAutoRefreshRate(<span class="pl-c1">20</span>);</pre></div>
+<p>You can configure some of the default settings of the library as outlined below and in the documentation. </p>
+
+<div class="highlight highlight-source-java"><pre>
+        <span class="pl-c">// Switch debug to true to get feedback from the library during development via Log.i</span>
+        mbtManager<span class="pl-k">.</span>enableDeuggingFeedback(<span class="pl-c1">true</span>);
+        <span class="pl-c">// Set the library to automatically switch BLE on if it is off or switched off, default is true</span>
+        mbtManager<span class="pl-k">.</span>enableBlueToothAutoSwitchOn(<span class="pl-c1">true</span>);
+        <span class="pl-c">// Set the auto-refresh rate to 10 s - this is the time we will go without seeing a beacon before deleting it from the ranged list. Default is 8s</span>
+        mbtManager<span class="pl-k">.</span>setBeaconAutoRefreshRate(<span class="pl-c1">10</span>);
+
+        <span class="pl-c">//Set the message to display when showing information dialog before requesting permissions to access users location</span>
+        mbtManager<span class="pl-k">.</span>setPermissionExplanationMessage(<span class="pl-s"><span class="pl-pds">"</span>Example Feedback Message. We need permission sto see your location before we can see beacons!<span class="pl-pds">"</span></span>);
+        <span class="pl-c">// Set the requestCode used to Request Grant Permissions - default is 1</span>
+        mbtManager<span class="pl-k">.</span>setPermissionRequestCode(<span class="pl-c1">24</span>);</pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/david-pugh-gcell/GCellBeaconScanner_Android">Gcellbeaconscanner android</a> is maintained by <a href="https://github.com/david-pugh-gcell">david-pugh-gcell</a>.</span>
