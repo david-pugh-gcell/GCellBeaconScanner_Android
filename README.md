@@ -1,26 +1,31 @@
 # GCellBeaconScanner Android
-Example Android Studio Project using the GCellBeaconScan Library to detect nearby beacons.
+Example Android Studio Project using the GCellBeaconScan aar Library to detect nearby iBeacon devices.
 
-This project is an example Android Studio project that uses the GCellBeaconScanner Library to easily set up and detect proximity to nearby iBeacons. 
+This project is an example Android Studio project that uses the GCellBeaconScanner aarLibrary to easily set up and detect proximity to nearby iBeacon devices. 
 
-For more information about iBeacons, potential applications, the Framework and other software support such as platforms please contact us at GCell ibeacon.solar.
+For more information about iBeacons, potential applications, the Framework and other software support such as platforms please contact us at [GCell ibeacon.solar](http://www.ibeacon.solar).
 
 Latest version: v1_0 (08 August 2016)
 
 The *gcellbeaconscanlibrary* module provides all the tools you need to start scanning for iBeacon devices in Android with minimal code. The library allows the developer to scan for nearby iBeacon devices in two ways:
 
-1. Return a list of all nearby iBeacon devices, regardless of their UUID
+1. Return a list of all nearby iBeacon devices, regardless of their UUID.
 2. Return only information on iBeacon devices from pre-determined Beacon Regions. You can monitor and range these regions, in a method very similar to that used in iOS. 
-
-
+ 
 There are 4 classes, the one that you will interact most with is the GCellBeaconScanManager
-This class handles the Bluetooth scans and returns any scanned devices in range that have an appropriate advertising packet. E.g., once initialized and running it returns callbacks based on what beacons are ranged. This are returned every 1 second in the form of an array list.
-Beacons are flushed from the list if they haven’t been seen for x seconds, as defined by setBeaconAutoRefreshRate, this defaults to 10s to match iOS. During this interval the RSSI of any beacon that may have just gone out of range is set to 0 and proximity unknown. 
+This class handles the Bluetooth scans and returns any scanned devices in range that have an appropriate advertising packet. E.g., once initialized and running it returns callbacks based on what beacons are ranged. This are returned every 1 second in the form of an array list. 
+
+Beacons are flushed from the list if they haven’t been seen for x seconds, as defined by setBeaconAutoRefreshRate, this defaults to 10s to match iOS. During this interval the RSSI of any beacon that may have just gone out of range is set to 0 and proximity unknown.
+
+### Java Documentation & Overview
+For Java documentation please see the repository [docs](https://htmlpreview.github.io/?https://raw.githubusercontent.com/david-pugh-gcell/GCellBeaconScanner_Android/master/GCellBeaconDocs/index.html).
+
+###Compatibility
+The library is designed and tested to work with Android 4.3 (API Level 18) onwards. This API introduces built-in platform support for Bluetooth Low Energy to scan and discover devices. 
 
 # Using the Library
-##Compatibility
-The library is designed and tested to work with API ??
-##Adding the library to your Project
+
+##Adding the Library to your Project
 1. Download and Copy the **gcellbeaconscanlibrary-release-vX.aar** file into the libs folder in your Android Studio Project.
 2. Within your app build.gradle file add the following entry to allow the app to see the library locally
 
@@ -51,7 +56,6 @@ In order to detect beacons your app will need to have manifest permission to acc
 The library will automatically check for user permissions and the status of Bluetooth Low Energy (BLE) on the device and is compatible with Marshmallow. 
 
 ## Import the class definitions
-
 
 ````java
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconRegion;
@@ -110,8 +114,8 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 	// endregion
 ````
 
-## Add Permission Handler
-In order to ask user for relevant permission in Marshmallow, you need to implement a *onRequestPermissionResult* method. This just calls the *permissionResult* method in the GCellBeaconScanmanager which will deal with the values. 
+## Add Permission Handler for Android 6.0
+In order to detect and use beacons, your app needs to have location permissions granted. As of Android 6.0 (API level 23) this is classed as a 'Dangerous' permission and as such the user has to explicitly give approval to your app. The GCellBeaconScanManager library automatically checks and, if required, requests the appropriate location permissions in Marshmallow. In order to handle this request properly you need to implement a *onRequestPermissionResult* method in your Activity. This just calls the *permissionResult* method in the GCellBeaconScanManager Library which will deal with the values. The GCellBeaconScanManager Library requests permissions with a requestCode value of 1. If you need to request additional permissions in your project, either use a requestCode value greater than 1 or change the code the library uses by changing the value of  *coarseLocationRequestcode*.
 
 ````java
 
@@ -156,6 +160,12 @@ To use this method, set the *useBeaconRegions* to true.
 		mbtManager.useBeaconRegions(true);
 ````
 ### Defining a Beacon region
+Regions represent the area a user can be in if they can see one or more beacons within range. You can use this capability to generate alerts or to provide other relevant information when the user enters or exits a beacon region. Rather than being identified by fixed geographical coordinates, a beacon region is identified by the device’s proximity to Bluetooth low-energy beacons that advertise a combination of the following values:
+
+<li>A proximity UUID (universally unique identifier), which is a 128-bit value that uniquely identifies one or more beacons as a certain type or from a certain organization or project
+<li>A major value, which is a 16-bit unsigned integer that can be used to group related beacons that have the same proximity UUID
+<li>A minor value, which is a 16-bit unsigned integer that differentiates beacons with the same proximity UUID and major value.
+
 Beacon regions can be defined by their proximity UUID only, Proximity UUID and Major number or by the proximity UUID, Major and Minor Numbers. This gives developers flexibility in how they define iBeacon projects and infastructure. The GCellBeaconRegion class has a number of constructures corresponding to these different definitions, but you can also automatically define a region based on the default GCell UUID.
 
 ````java
@@ -177,7 +187,7 @@ Then just start monitoring for these regions.
 	mbtManager.startMonitoringForBeacons();
 ````
 
-The library will monitor for BLE devices in low power mode; if any iBeacon devices are in range that correspond to the Beacon Regions defined, the library will call the *didEnterRegion* method. To start to get more details of the beacons in that region, then call teh *startMonitoringForBeaconinRegion* method.
+The library will monitor for BLE devices in low power mode; if any iBeacon devices are in range that correspond to the Beacon Regions defined, the library will call the *didEnterRegion* method. To start to get more details of the beacons in that region, then call the *startMonitoringForBeaconinRegion* method.
 
 ````java
 	// This event means the device has enetred a beacon region. To find out more about what beacons are in the region, start ranging.
@@ -216,4 +226,6 @@ This method of operation can be easier to set up, but can be more power hungry a
 		mbtManager.autoSwitchOnBlueTooth = true;
 		// Set the auto-refresh rate in seconds 
 		mbtManager.setBeaconAutoRefreshRate(20);
+		// Change the permission requestCode value used by the library
+		mbtManager.coarseLocationRequestcode = 3;
 ````
