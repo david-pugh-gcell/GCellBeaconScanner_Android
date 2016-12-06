@@ -31,6 +31,13 @@ Use the module import wizard (File | New Module | Import .JAR or .AAR package) w
 
 Then add the module as a dependency to the app - Go to File>Project Settings (Ctrl+Shift+Alt+S), under 'Modules' in the left hand window select 'app'. On the dependencies tab, click the green + symbol in the top right hand corner and add Module Dependency and select the library.
 
+Also eensure that the /app/build.gradle specifies that the project uses appcompat - this is used to give tehuser information about location permissions. Just add a reference to it in the /app/build.gradle:
+
+````xml
+dependencies {
+    compile 'com.android.support:appcompat-vX:XX.X.X'
+}
+````
 
 Alternatively you can import the aar manually using the following steps:
 
@@ -50,6 +57,7 @@ Alternatively you can import the aar manually using the following steps:
 ````xml
 dependencies {
     compile(name:'gcellbeaconscanlibrary-release-v1-01', ext: 'aar')
+    compile 'com.android.support:appcompat-v7:23.0.0'
 }
 ````
 
