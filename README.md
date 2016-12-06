@@ -45,6 +45,7 @@ dependencies {
     compile(name:'gcellbeaconscanlibrary-release-v1-01', ext: 'aar')
 }
 ````
+Alternatively use the module import wizard (File | New Module | Import .JAR or .AAR package) which will automatically add the .aar as a library module in your project.
 
 ##Setting Permissions
 In order to detect beacons your app will need to have manifest permission to access to Bluetooth and your location. To enable these permissions add the following entries to the AndroidManifest.xml file in your app. 
