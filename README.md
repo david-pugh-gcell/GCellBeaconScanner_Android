@@ -27,7 +27,12 @@ The library is designed and tested to work with Android 4.3 (API Level 18) onwar
 
 ##Adding the Library to your Project
 
-Use the module import wizard (File | New Module | Import .JAR or .AAR package) which will automatically add the .aar as a library module in your project. Alternatively you can import the aar manually using teh following steps:
+Use the module import wizard (File | New Module | Import .JAR or .AAR package) which will automatically add the .aar as a library module in your project. 
+
+Then add the module as a dependency to the app - Go to File>Project Settings (Ctrl+Shift+Alt+S), under 'Modules' in the left hand window select 'app'. On the dependencies tab, click the green + symbol in the top right hand corner and add Module Dependency and select the library.
+
+
+Alternatively you can import the aar manually using the following steps:
 
 1. Download and Copy the **gcellbeaconscanlibrary-release-vX.aar** file into the libs folder in your Android Studio Project.
 2. Within your /build.gradle file add the following entry to allow the app to see the library locally
