@@ -27,6 +27,8 @@ The library is designed and tested to work with Android 4.3 (API Level 18) onwar
 
 ##Adding the Library to your Project
 
+Use the module import wizard (File | New Module | Import .JAR or .AAR package) which will automatically add the .aar as a library module in your project. Alternatively you can import the aar manually using teh following steps:
+
 1. Download and Copy the **gcellbeaconscanlibrary-release-vX.aar** file into the libs folder in your Android Studio Project.
 2. Within your /build.gradle file add the following entry to allow the app to see the library locally
 
@@ -45,7 +47,7 @@ dependencies {
     compile(name:'gcellbeaconscanlibrary-release-v1-01', ext: 'aar')
 }
 ````
-Alternatively use the module import wizard (File | New Module | Import .JAR or .AAR package) which will automatically add the .aar as a library module in your project.
+
 
 ##Setting Permissions
 In order to detect beacons your app will need to have manifest permission to access to Bluetooth and your location. To enable these permissions add the following entries to the AndroidManifest.xml file in your app. 
