@@ -26,8 +26,9 @@ The library is designed and tested to work with Android 4.3 (API Level 18) onwar
 # Using the Library
 
 ##Adding the Library to your Project
+
 1. Download and Copy the **gcellbeaconscanlibrary-release-vX.aar** file into the libs folder in your Android Studio Project.
-2. Within your app build.gradle file add the following entry to allow the app to see the library locally
+2. Within your /build.gradle file add the following entry to allow the app to see the library locally
 
 ````xml
   repositories {
@@ -37,7 +38,7 @@ The library is designed and tested to work with Android 4.3 (API Level 18) onwar
     }
 ````
 
-3. and add the aar as a dependency
+3. and add the aar as a dependency in the /app/build.gradle
 
 ````xml
 dependencies {
