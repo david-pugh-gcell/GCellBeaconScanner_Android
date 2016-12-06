@@ -73,6 +73,13 @@ import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellBeaconScanManager;
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCelliBeacon;
 import com.gcell.ibeacon.gcellbeaconscanlibrary.GCellUuid;
 ````
+The Framework also utiklises Lists and ArrayLists
+
+````java
+import java.util.ArrayList;
+import java.util.List;
+''''
+
 
 ## Implement GCellBeaconManagerScanEvents interface and Implement methods
 ````java
