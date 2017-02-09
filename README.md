@@ -1,6 +1,7 @@
 # GCellBeaconScanner Android
 Example Android Studio Project using the GCellBeaconScan aar Library to detect nearby iBeacon devices.
-##PLEASE NOTE a Newer version of an Android Library with more functionality is also listed in this reporsitory.
+
+##PLEASE NOTE a Newer version of an Android Library with more functionality is also listed as another repository.
 
 This project is an example Android Studio project that uses the GCellBeaconScanner aar Library to easily set up and detect proximity to nearby iBeacon devices. 
 
